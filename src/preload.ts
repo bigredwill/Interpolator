@@ -14,4 +14,9 @@ contextBridge.exposeInMainWorld('Electron', {
   nativeImage: {
     createFromPath: (filePath: string) => nativeImage.createFromPath(filePath),
   },
+  processes: {
+    previewVideo: (filePaths: string[], outputVideoPath: string) => {
+        ipcRenderer.invoke('preview-video', filePaths, outputVideoPath);
+    },
+  }
 });
