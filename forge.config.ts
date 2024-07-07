@@ -21,6 +21,9 @@ const config: ForgeConfig = {
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
+      // this allows loading images on file system
+      // see README.md for more info.
+      devContentSecurityPolicy: 'img-src \'self\' atom:',
       mainConfig,
       renderer: {
         config: rendererConfig,

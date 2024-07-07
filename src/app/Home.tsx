@@ -6,10 +6,6 @@ import FilePicker from "./Components/FilePicker";
  * Use redux? preact signals?
  */
 
-function pathToDataUrl(path: string): string {
-  return window.Electron.nativeImage.createFromPath(path).toDataURL();
-}
-
 const Home: React.FC = () => {
   const [directoryPath, setDirectoryPath] = useState<string>("");
   const [files, setFiles] = useState<string[]>([]);
@@ -57,10 +53,9 @@ const Home: React.FC = () => {
             {file}
             <img
               key={index}
-              // @ts-ignore
-              src={pathToDataUrl(`${directoryPath}/${file}`)} // Use file:// protocol to load local files
-              alt={`Image ${index}`} // Add alt text for accessibility
-              style={{ width: "200px", height: "auto", margin: "10px" }} // Adjust styling as needed
+              src={`atom://${directoryPath}/${file}`}
+              alt={`Image ${index}`}
+              style={{ width: "200px", height: "auto", margin: "10px" }}
             />
           </li>
         ))}

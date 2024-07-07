@@ -19,4 +19,6 @@ export default function registerIpcHandles() {
       throw error; // Propagate the error back to the renderer process
     }
   });
+
+  // ipcMain.handle("")
 }
