@@ -25,7 +25,6 @@ const Home: React.FC = () => {
 
   const previewVideo = async () => {
     try {
-      console.log(`${directoryPath}/${files[0]}-vid.mp4`);
       const outputVideo = await window.Electron.ipcRenderer.invoke(
         "preview-video",
         {

@@ -1,20 +1,28 @@
-import type { Configuration } from 'webpack';
+import type { Configuration } from "webpack";
 
-import { rules } from './webpack.rules';
-import { plugins } from './webpack.plugins';
+import { rules } from "./webpack.rules";
+import { plugins } from "./webpack.plugins";
 
 export const mainConfig: Configuration = {
   /**
-   * This is the main entry point for your application, it's the first file
-   * that runs in the main process.
+   * Main entry point is index.ts
+   * 
+   * ffmpegWorker is a forkable process, so needs its own
+   * js file.
    */
-  entry: './src/index.ts',
+  entry: {
+    index: "./src/index.ts",
+    ffmpegWorker: {
+      import: "./src/main/processes/ffmpegWorker.ts",
+      filename: "processes/[name].js",
+    },
+  },
   // Put your normal webpack config below here
   module: {
     rules,
   },
   plugins,
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".css", ".json"],
   },
 };
